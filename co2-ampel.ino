@@ -1,7 +1,16 @@
-#include <SoftwareSerial.h>
-extern "C" {
-#include "user_interface.h"
-}
+#include <SoftwareSerial.h>     // brauchen wir für serielle Kommunikation mit dem Sensor
+#include <Adafruit_NeoPixel.h>  // brauchen wir für die RGB LED
+// brauchen wir das? Geht auch ohne ...
+//extern "C" {
+//#include "user_interface.h"
+//}
+
+#define PIXEL_PIN D5  // wir haben die RGB LED an PIN D5
+// LED kann auch mit 3.3V betrieben werden
+
+// Konfigurieren der NeoPixel Bibliothek
+// wieviele Pixels (1), welcher Pin
+ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 //EspClass esp; // brauchen wir, um den ESP schlafen zu schicken
 int CO2Wert;  // CO2 Wert in ppm
@@ -10,7 +19,9 @@ int Messinterval = 1; // alle x Minuten messen
 // RX, TX Pins festlegen
 SoftwareSerial co2Serial(D2, D1);
 
-int leseCO2()                         // Kommunikation mit MH-Z19 CO2 Sensor
+// misst CO2 Wert und liefert ihn zurück in ppm 
+// Kommunikation mit MH-Z19B CO2 Sensor
+int leseCO2() 
 {
   byte cmd[9] = {0xFF, 0x01, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79};
   char antwort[9];
@@ -21,7 +32,28 @@ int leseCO2()                         // Kommunikation mit MH-Z19 CO2 Sensor
   int antwortHigh = (int) antwort[2]; // CO2 High Byte
   int antwortLow = (int) antwort[3];  // CO2 Low Byte
   int ppm = (256 * antwortHigh) + antwortLow;
-  return ppm;                         // Antwort des MH-Z19 CO2 Sensors in ppm
+  return ppm;   // Antwort des MH-Z19 CO2 Sensors in ppm
+}
+
+char GetColor(int co2) 
+{
+//  int temp = 150 - (150 * co2 / 1800);  // co2 in Farbe Umrechnen
+//  if (temp < 0)temp += 256;             // wir wollen einen Wert zw. 0 und 255
+
+  if (co2 <= 650) {
+    // grün 
+    return 'G';
+  } else if (co2 <= 1250) {
+    // gelb
+    return 'Y';
+  } else {
+    // rot
+    return 'R';
+  }
+  if (co2 > 1850) {
+    // violett
+    return 'V';
+  }
 }
 
 void setup() {
@@ -29,15 +61,42 @@ void setup() {
   pinMode(D0, WAKEUP_PULLUP);
 
   // messen
-  co2Serial.begin(9600);
+  co2Serial.begin(9600);              // serielle Kommunikation mit dem Sensor beginnen
   CO2Wert = leseCO2();                // MH-Z19 CO2 Sensor lesen
 
+  // Berechnen der Farbe
+  char farbe = GetColor(CO2Wert);
+
+  switch (farbe) 
+  {
+    case 'G': 
+      pixels.setPixelColor(0, pixels.Color(0, 255, 0));
+      break;
+    case 'R': 
+      pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+      break;
+    case 'Y': 
+      pixels.setPixelColor(0, pixels.Color(255, 255, 0));
+      break;
+    case 'V': 
+      pixels.setPixelColor(0, pixels.Color(153, 0, 255));
+      break;      
+    default:
+      pixels.setPixelColor(0, pixels.Color(0, 0, 255)); // blue
+      break;
+  }
+  pixels.show(); // This sends the updated pixel color to the hardware.
+  
+  // NeoPixels Biliothek initialisieren
+  pixels.begin();
+
   // Ausgabe
-  Serial.begin(115200);
+  Serial.begin(115200);               // serielle Kommunikation mit dem PC beginnen
   Serial.println("");
   Serial.println("Wach auf und geh messen ...");
   Serial.printf("CO2 Wert = %d ppm\n\n", CO2Wert);
   Serial.println("Geh wieder schlafen ...");
+  
   //esp.deepSleep(Messinterval * 60e6, WAKE_RF_DISABLED); // ESP8266 geht für x Minuten schlafen
     // convert to microseconds
   ESP.deepSleep(Messinterval * 60e6);
