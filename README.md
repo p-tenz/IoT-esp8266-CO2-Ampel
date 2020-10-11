@@ -16,4 +16,5 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
 * Treiber für WEMOS D1 Mini: https://docs.wemos.cc/en/latest/ch340_driver.html
 * Arduino IDE
 * Bibliotheken
+  * für Kommunikation mit dem Sensor: SoftwareSerial Library
   * für RGB LED: Adafruit_NeoPixel_Library
