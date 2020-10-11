@@ -68,7 +68,7 @@ void setup() {
   pixels.begin();
 
   // blink in all colors ending blue to show that thing is working
-  for (int i=0; i<6; i++)
+  for (int i=0; i<5; i++)
   {
     switch (i) {
       case 0:
@@ -83,7 +83,7 @@ void setup() {
       case 3:
         pixels.setPixelColor(0, pixels.Color(153, 0, 255)); //violet
         break;
-      case 5:
+      case 4:
         pixels.setPixelColor(0, pixels.Color(0, 0, 255)); //blue
         break;
     }
