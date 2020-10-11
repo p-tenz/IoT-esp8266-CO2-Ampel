@@ -29,3 +29,8 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
 * zweiter Versuch mit Verwendung der MHZ-19_uart Library (siehe Software)
 * misst auch die Temperatur (not supported)
 * zur Wahl mit Verwendung von Tiefschlaf zwischen Messungen
+
+### Links
+* Hintergrund zum Thema: https://www.umwelt-campus.de/forschung/projekte/iot-werkstatt/ideen-zur-corona-krise
+* Datenblatt MHZ19: https://www.winsen-sensor.com/d/files/PDF/Infrared%20Gas%20Sensor/NDIR%20CO2%20SENSOR/MH-Z19%20CO2%20Ver1.0.pdf
+* Gespickelt auf: http://esp8266-server.de/CO2Ampel.html
