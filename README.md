@@ -27,5 +27,5 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
 * lässt D1 Mini zwischen den Messungen in den Tiefschlaf fallen (leere Loop-Methode, alles in Setup-Methode)
 ## co2-ampel-2.ino
 * zweiter Versuch mit Verwendung der MHZ-19_uart Library (siehe Software)
-* misst auch die Temperatur
-* derzeit ohne Tiefschlaf zwischen Messungen (Setup + Loop)
+* misst auch die Temperatur (not supported)
+* zur Wahl mit Verwendung von Tiefschlaf zwischen Messungen
