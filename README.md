@@ -18,7 +18,7 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
 * Bibliotheken
   * für Kommunikation mit dem Sensor: SoftwareSerial Library
   * für RGB LED: Adafruit_NeoPixel_Library
-  * in co2-amlel-2.ino zum Ansteuern des CO2 Sensors MHZ-19: MHZ19_uart Library, siehe https://github.com/nara256/mhz19_uart
+  * in co2-ampel-2.ino zum Ansteuern des CO2 Sensors MHZ-19: MHZ19_uart Library, siehe https://github.com/nara256/mhz19_uart
 
 ### Sketches
 ## co2-ampl.ino
@@ -30,7 +30,7 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
 * misst auch die Temperatur (not supported)
 * zur Wahl mit Verwendung von Tiefschlaf zwischen Messungen
 
-### Links
+### Weitere Links
 * Hintergrund zum Thema: https://www.umwelt-campus.de/forschung/projekte/iot-werkstatt/ideen-zur-corona-krise
 * Datenblatt MHZ19: https://www.winsen-sensor.com/d/files/PDF/Infrared%20Gas%20Sensor/NDIR%20CO2%20SENSOR/MH-Z19%20CO2%20Ver1.0.pdf
 * Gespickelt auf: http://esp8266-server.de/CO2Ampel.html
