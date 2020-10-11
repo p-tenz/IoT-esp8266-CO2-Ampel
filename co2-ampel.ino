@@ -40,17 +40,17 @@ char GetColor(int co2)
 //  int temp = 150 - (150 * co2 / 1800);  // co2 in Farbe Umrechnen
 //  if (temp < 0)temp += 256;             // wir wollen einen Wert zw. 0 und 255
 
-  if (co2 <= 650) {
+  if (co2 < 1000) {
     // grün 
     return 'G';
-  } else if (co2 <= 1250) {
+  } else if (co2 < 2000) {
     // gelb
     return 'Y';
   } else {
     // rot
     return 'R';
   }
-  if (co2 > 1850) {
+  if (co2 > 2500) {
     // violett
     return 'V';
   }
@@ -64,31 +64,64 @@ void setup() {
   co2Serial.begin(9600);              // serielle Kommunikation mit dem Sensor beginnen
   CO2Wert = leseCO2();                // MH-Z19 CO2 Sensor lesen
 
-  // Berechnen der Farbe
-  char farbe = GetColor(CO2Wert);
-
-  switch (farbe) 
-  {
-    case 'G': 
-      pixels.setPixelColor(0, pixels.Color(0, 255, 0));
-      break;
-    case 'R': 
-      pixels.setPixelColor(0, pixels.Color(255, 0, 0));
-      break;
-    case 'Y': 
-      pixels.setPixelColor(0, pixels.Color(255, 255, 0));
-      break;
-    case 'V': 
-      pixels.setPixelColor(0, pixels.Color(153, 0, 255));
-      break;      
-    default:
-      pixels.setPixelColor(0, pixels.Color(0, 0, 255)); // blue
-      break;
-  }
-  pixels.show(); // This sends the updated pixel color to the hardware.
-  
   // NeoPixels Biliothek initialisieren
   pixels.begin();
+
+  // blink in all colors ending blue to show that thing is working
+  for (int i=0; i<6; i++)
+  {
+    switch (i) {
+      case 0:
+        pixels.setPixelColor(0, pixels.Color(255, 0, 0)); //red
+        break;
+      case 1:
+        pixels.setPixelColor(0, pixels.Color(255, 153, 0)); //yellow
+        break;
+      case 2:
+        pixels.setPixelColor(0, pixels.Color(0, 255, 0)); //green
+        break;
+      case 3:
+        pixels.setPixelColor(0, pixels.Color(153, 0, 255)); //violet
+        break;
+      case 5:
+        pixels.setPixelColor(0, pixels.Color(0, 0, 255)); //blue
+        break;
+    }
+    pixels.show();
+    delay(200); // delay for a period of time (in milliseconds)   
+    pixels.setPixelColor(0,0,0,0);
+    pixels.show();
+    delay(200);
+  }
+
+  if (CO2Wert < 0){
+    pixels.setPixelColor(0, pixels.Color(0, 0, 255)); // blue
+  } else { 
+    // Berechnen der Farbe
+    char farbe = GetColor(CO2Wert);
+  
+    switch (farbe) 
+    {
+      case 'G': 
+        pixels.setPixelColor(0, pixels.Color(0, 255, 0));
+        break;
+      case 'R': 
+        pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+        break;
+      case 'Y': 
+        pixels.setPixelColor(0, pixels.Color(255, 153, 0));
+        break;
+      case 'V': 
+        pixels.setPixelColor(0, pixels.Color(153, 0, 255));
+        break;      
+      default:
+        pixels.setPixelColor(0, pixels.Color(0, 0, 255)); // blue
+        break;
+    }
+  }
+  
+  pixels.show(); // This sends the updated pixel color to the hardware.
+  
 
   // Ausgabe
   Serial.begin(115200);               // serielle Kommunikation mit dem PC beginnen
@@ -104,4 +137,5 @@ void setup() {
  
 void loop()
 {
+  // empty because of deepsleep
 }
