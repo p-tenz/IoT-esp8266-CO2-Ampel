@@ -18,3 +18,13 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
 * Bibliotheken
   * für Kommunikation mit dem Sensor: SoftwareSerial Library
   * für RGB LED: Adafruit_NeoPixel_Library
+
+### Sketches
+## co2-ampl.ino
+* erster Versuch
+* sendet selbst den Byte-Code für Messung an den MHZ-19
+* lässt D1 Mini zwischen den Messungen in den Tiefschlaf fallen (leere Loop-Methode, alles in Setup-Methode)
+## co2-ampel-2.ino
+* zweiter Versuch mit Verwendung der MHZ-19_uart Library (siehe https://github.com/nara256/mhz19_uart)
+* misst auch die Temperatur
+* derzeit ohne Tiefschlaf zwischen Messungen (Setup + Loop)
