@@ -21,11 +21,11 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
   * in co2-ampel-2.ino zum Ansteuern des CO2 Sensors MHZ-19: MHZ19_uart Library, siehe https://github.com/nara256/mhz19_uart
 
 ### Sketches
-## co2-ampl.ino
+#### co2-ampl.ino
 * erster Versuch
 * sendet selbst den Byte-Code für Messung an den MHZ-19
 * lässt D1 Mini zwischen den Messungen in den Tiefschlaf fallen (leere Loop-Methode, alles in Setup-Methode)
-## co2-ampel-2.ino
+#### co2-ampel-2.ino
 * zweiter Versuch mit Verwendung der MHZ-19_uart Library (siehe Software)
 * misst auch die Temperatur (not supported)
 * zur Wahl mit Verwendung von Tiefschlaf zwischen Messungen
