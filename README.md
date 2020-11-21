@@ -29,6 +29,7 @@ Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe a
   * [D1] G  - [MHZ-19] GND - schwarz
   * [D1] D6 - [MHZ-19] RX  - grün
   * [D1] D7 - [MHZ-19] TX  - lila
+  
 ![Verkabelung](Verkabelung.jpg?raw=true)
 
 ## Sketches
