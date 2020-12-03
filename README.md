@@ -64,5 +64,5 @@ Ich verwende den zuletzt genannten.
 * Datenblatt MHZ19: https://www.winsen-sensor.com/d/files/PDF/Infrared%20Gas%20Sensor/NDIR%20CO2%20SENSOR/MH-Z19%20CO2%20Ver1.0.pdf
 * Gespickelt auf: http://esp8266-server.de/CO2Ampel.html
 
-## Was noch fehlt
-Ich brauche dringend ein anständiges Gehäuse! Es muss irgendwie offen sein, damit die Raumluft da auch reinkommt.
+## Gehäuse
+Habe ein 3D Modell für den Wemos D1 gefunden und etwas angepasst. Bin noch am Optimieren. Sobald ich fertig bin, gibt es die STL Datei.
