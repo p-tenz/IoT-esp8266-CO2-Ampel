@@ -25,6 +25,8 @@ void setup() {
 
   // NeoPixels Biliothek initialisieren
   pixels.begin();
+  // halb so hell
+  //pixels.setBrightness(128);
 
   // einmal blinken bitte
   delay(10);
