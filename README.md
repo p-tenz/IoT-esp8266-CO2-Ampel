@@ -39,14 +39,17 @@ Ich verwende den zuletzt genannten.
 * erster Versuch mit Breadboard, LED an D5, Sensor an D1 und D2
 * sendet selbst den Byte-Code für Messung an den MHZ-19
 * lässt D1 Mini zwischen den Messungen in den Tiefschlaf fallen (leere Loop-Methode, alles in Setup-Methode)
+* Messung alle 60 Sekunden
 ### co2-ampel-2.ino
 * zweiter Versuch mit Verwendung der MHZ-19_uart Library (siehe Software)
 * misst auch die Temperatur (not supported)
 * zur Wahl mit Verwendung von Tiefschlaf zwischen Messungen
+* Messung alle 60 Sekunden
 ### d1mini-mhz19-co2-ampel-loop.ino
 * einfache Variante für RGB-LED Shield (LED an D2), Sensor verkabelt (D6 und D7)
 * ohne Tiefschlaf
 * Grenzwerte 1000, 1400 (und 2000)
+* Messung alle 20 Sekunden
 
 ## Zu beachten
 * RGB-LED Shield verwendet Datenpin D2. Dieser ist im Programm beim Initialisiern der Library festgelegt. Ebenso die Anzahl der LEDs, also 1.
@@ -57,7 +60,8 @@ Ich verwende den zuletzt genannten.
   * grün bei Werten unter 1000ppm
   * gelb bei Werten zwischen 1000ppm un 1400 ppm
   * rot bei Werten über 1400ppm
-  * (violett bei Werten über 2000ppm)
+  * (rot blinkend bei Werten über 2000ppm)
+* gemessen wird alle 20 Sekunden
 
 ## Weitere Links
 * Hintergrund zum Thema: https://www.umwelt-campus.de/forschung/projekte/iot-werkstatt/ideen-zur-corona-krise
