@@ -3,7 +3,7 @@ IoT Projekt mit WEMOS D1 Mini
 
 Misst CO2 Wert der Raumluft und zeigt je nach Höhe des Wertes eine Ampelfarbe an. Diese signalisiert, ob gelüftet werden muss.
 
-![Ampel in §d-gedruckten Gehäuse](co2ampel-3.jpg?raw=true)
+![Ampel in 3d-gedruckten Gehäuse](co2ampel-3.jpg?raw=true)
 
 ## Was wird benötigt?
 ### Hardware
